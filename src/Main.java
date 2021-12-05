@@ -8,15 +8,35 @@ public class Main {
 	public static void main(String[] args) {
 
 		boolean winCondition = false;
-
-		do {
+		boolean correctPlace = false;
+		
+		while (winCondition = true) {
 			Board printBoard = new Board();
-			//Human humanPlayer = new Human();
 			Player player1 = new Human();
-			printBoard.butInBoardXOrOAndPrintBoard(gameboard, 'x', numberUserInput);
-			Game winConditionGameObjekt = new Game();
-			winCondition = winConditionGameObjekt.winCondition(gameboard, "Player", winCondition);
-		} while (winCondition = true);
+			Player cpu = new Computer();
+			Game gameRules = new Game();
+
+			do {
+				int humenInput = player1.play();
+				correctPlace = false;
+				correctPlace = gameRules.rightPlacement(gameboard, 'X', humenInput);
+				if (correctPlace == true) {
+					printBoard.butInBoardXOrOAndPrintBoard(gameboard, 'X', humenInput);
+					winCondition = gameRules.winCondition(gameboard, "Player", winCondition);
+				}
+			} while (correctPlace == false);
+
+			do {
+				int cpuInput = cpu.play();
+				correctPlace = false;
+				correctPlace = gameRules.rightPlacement(gameboard, 'X', cpuInput);
+				if (correctPlace == true) {
+					printBoard.butInBoardXOrOAndPrintBoard(gameboard, 'O', cpuInput);
+					winCondition = gameRules.winCondition(gameboard, "Player", winCondition);
+				}
+			} while (correctPlace == false);
+
+		}
 
 	}
 
