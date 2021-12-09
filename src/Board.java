@@ -1,18 +1,29 @@
 
 public class Board {
-
-	private static char[] gameboard = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
+	// copie constructor
+	public Board(Board obj) {
+		for (int t = 0; t<9;t++) {
+			gameboard[t] = obj.gameboard[t];
+		}
+	}
+	// standart constructor
+	public Board() {
+		
+	}
 	
-	public static char[] getGameboard() {
+	
+	public char[] gameboard = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
+	
+	public char[] getGameboard() {
 		return gameboard;
 	}
 
-	public static void setGameboard(char[] gameboard) {
-		Board.gameboard = gameboard;
+	public  void setGameboard(char[] gameboard) {
+		this.gameboard = gameboard;
 	}
 
 
-	public static void printTicTacToeBoard() {
+	public void printTicTacToeBoard() {
 
 		// Prints out the board and puts in the gameboard[x] and show the value in the
 		// array on that place x
@@ -22,7 +33,7 @@ public class Board {
 	}
 	
 	
-	public static void butInBoardXOrOAndPrintBoard(char changeSymbol , int change) {
+	public void butInBoardXOrOAndPrintBoard(char changeSymbol , int change) {
 		// switch for User Input if for example User Input is 2 then change array
 		// Element one
 		switch (change) {
@@ -58,7 +69,7 @@ public class Board {
 		printTicTacToeBoard();
 	}
 	
-	public static void butInBoardXOrOWithoutPrintBoard(char changeSymbol , int change) {
+	public void butInBoardXOrOWithoutPrintBoard(char[] gameboard, char changeSymbol , int change) {
 		// switch for User Input if for example User Input is 2 then change array
 		// Element one
 		switch (change) {

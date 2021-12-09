@@ -6,8 +6,8 @@ public class Computer extends Player {
 	Board copieOfGameBoard;
 	
 	public int play() {
-		copieOfGameBoard = new Board();
-		copieOfGameBoard = Main.printBoard;
+		copieOfGameBoard = new Board(Main.printBoard);
+		//copieOfGameBoard = Main.printBoard;
 		int change = playAgainstComputerOpponent();
 		return change;
 	}
@@ -17,7 +17,7 @@ public class Computer extends Player {
 		for(int i = 0; i<=8;i++ ) {
 			bestNum[i] = 0;
 		}
-		for (int i = 0; i <= 5; i++) {
+		for (int i = 0; i <= 1000; i++) {
 			boolean correctPlace = false;
 			do {
 				Random randNum = new Random();
@@ -30,7 +30,10 @@ public class Computer extends Player {
 						bestNum[checkBestSolution]++;
 					}
 				}
-				copieOfGameBoard = Main.printBoard;
+				copieOfGameBoard = new Board(Main.printBoard);
+				if(copieOfGameBoard == Main.printBoard) {
+					System.out.println("Zeigen auf dass sebe Board");
+				}
 			} while (correctPlace == false);	
 		}
 		int posArray = 0;
@@ -51,7 +54,7 @@ public class Computer extends Player {
 		Player cpu = new Computer();
 		Game gameRules = new Game();
 		correctPlace = gameRules.rightPlacementWithoutPrint(copieOfGameBoard.getGameboard(), 'O', change);
-		printBoard.butInBoardXOrOWithoutPrintBoard('O', change);
+		printBoard.butInBoardXOrOWithoutPrintBoard(copieOfGameBoard.getGameboard(),'O', change);
 		winCondition = gameRules.winCondition(copieOfGameBoard.getGameboard(), "CPU", winCondition);	
 		if (winCondition == true) {
 			return true;
@@ -65,10 +68,9 @@ public class Computer extends Player {
 				correctPlace = false;
 				correctPlace = gameRules.rightPlacementWithoutPrint(copieOfGameBoard.getGameboard(), 'X', change);
 				if (correctPlace == true) {
-					printBoard.butInBoardXOrOWithoutPrintBoard('X', change);
+					printBoard.butInBoardXOrOWithoutPrintBoard(copieOfGameBoard.getGameboard(),'X', change);
 					winCondition = gameRules.winCondition(copieOfGameBoard.getGameboard(), "CPU2", winCondition);
 					if (winCondition == true) {
-						System.out.println("hi");
 						return false;
 					}
 				}
@@ -80,7 +82,7 @@ public class Computer extends Player {
 				correctPlace = false;
 				correctPlace = gameRules.rightPlacementWithoutPrint(copieOfGameBoard.getGameboard(), 'O', change);
 				if (correctPlace == true) {
-					printBoard.butInBoardXOrOWithoutPrintBoard('O', change);
+					printBoard.butInBoardXOrOWithoutPrintBoard(copieOfGameBoard.getGameboard(),'O', change);
 					winCondition = gameRules.winCondition(copieOfGameBoard.getGameboard(), "CPU", winCondition);
 					if (winCondition == true) {
 						System.out.println("hi");

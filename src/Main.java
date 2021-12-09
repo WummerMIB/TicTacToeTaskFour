@@ -4,6 +4,7 @@ public class Main {
 
 	private static int change;
 	public static Board printBoard = new Board();
+
 	public static void main(String[] args) {
 
 		boolean winCondition = false;
@@ -11,13 +12,12 @@ public class Main {
 		System.out.println("Geben sie 1 um Zweispieler Modus zu aktivieren und 2 für den Computer");
 		Scanner gameModeScanner = new Scanner(System.in);
 		String gameMode = gameModeScanner.nextLine();
-		
+		printBoard = new Board();
+		Player player1 = new Human();
+		Player cpu = new Computer();
+		Game gameRules = new Game();
 		while (winCondition == false) {
-			printBoard = new Board();
-			Player player1 = new Human();
-			Player cpu = new Computer();
-			Game gameRules = new Game();
-			
+
 			if (gameMode.equals("1")) {
 				do {
 					int humenInput = player1.play();
@@ -25,10 +25,10 @@ public class Main {
 					correctPlace = gameRules.rightPlacement(printBoard.getGameboard(), 'X', humenInput);
 					if (correctPlace == true) {
 						printBoard.butInBoardXOrOAndPrintBoard('X', humenInput);
-						winCondition = gameRules.winCondition(printBoard.getGameboard(),"Player1", winCondition);
+						winCondition = gameRules.winCondition(printBoard.getGameboard(), "Player1", winCondition);
 					}
 				} while (correctPlace == false);
-				if(winCondition == true) {
+				if (winCondition == true) {
 					break;
 				}
 				do {
@@ -37,7 +37,7 @@ public class Main {
 					correctPlace = gameRules.rightPlacement(printBoard.getGameboard(), 'X', cpuInput);
 					if (correctPlace == true) {
 						printBoard.butInBoardXOrOAndPrintBoard('O', cpuInput);
-						winCondition = gameRules.winCondition(printBoard.getGameboard(),"Player2", winCondition);
+						winCondition = gameRules.winCondition(printBoard.getGameboard(), "Player2", winCondition);
 					}
 				} while (correctPlace == false);
 
@@ -45,10 +45,10 @@ public class Main {
 				do {
 					int humenInput = player1.play();
 					correctPlace = false;
-					correctPlace = gameRules.rightPlacement(printBoard.getGameboard(),'X', humenInput);
+					correctPlace = gameRules.rightPlacement(printBoard.getGameboard(), 'X', humenInput);
 					if (correctPlace == true) {
 						printBoard.butInBoardXOrOAndPrintBoard('X', humenInput);
-						winCondition = gameRules.winCondition(printBoard.getGameboard(),"Player", winCondition);
+						winCondition = gameRules.winCondition(printBoard.getGameboard(), "Player", winCondition);
 					}
 				} while (correctPlace == false);
 
@@ -57,8 +57,8 @@ public class Main {
 					correctPlace = false;
 					correctPlace = gameRules.rightPlacementWithoutPrint(printBoard.getGameboard(), 'X', cpuInput);
 					if (correctPlace == true) {
-						printBoard.butInBoardXOrOAndPrintBoard( 'O', cpuInput);
-						winCondition = gameRules.winCondition(printBoard.getGameboard(),"Player", winCondition);
+						printBoard.butInBoardXOrOAndPrintBoard('O', cpuInput);
+						winCondition = gameRules.winCondition(printBoard.getGameboard(), "Player", winCondition);
 					}
 				} while (correctPlace == false);
 			}
