@@ -74,5 +74,22 @@ public class Game {
 		// you get an error
 		return false;
 	}
+	
+	public static boolean rightPlacementWithoutPrint(char[] gameboard, char changeSymbol, int change) {
+		boolean rightPlace;
+		// looks in array on the place from User Input if there is an X or O than return
+		// that you can't place the symbol there
+		if (gameboard[change - 1] == 'X' || gameboard[change - 1] == 'O') {
+			return rightPlace = false;
+		}
+		// if array is on user Input -1 empty than Print the Board and return rightPlace
+		// true
+		if (gameboard[change - 1] == ' ') {
+			return rightPlace = true;
+		}
+		// method needs to return an boolean and if it return it in if condition than
+		// you get an error
+		return false;
+	}
 
 }
