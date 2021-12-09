@@ -9,15 +9,15 @@ public class Main {
 
 		boolean winCondition = false;
 		boolean correctPlace = false;
+		System.out.println("Geben sie 1 um Zweispieler Modus zu aktivieren und 2 für den Computer");
 		Scanner gameModeScanner = new Scanner(System.in);
 		String gameMode = gameModeScanner.nextLine();
 
-		while (winCondition = true) {
+		while (winCondition == false) {
 			Board printBoard = new Board();
 			Player player1 = new Human();
 			Player cpu = new Computer();
 			Game gameRules = new Game();
-
 			
 			if (gameMode.equals("1")) {
 				do {
@@ -29,7 +29,9 @@ public class Main {
 						winCondition = gameRules.winCondition(gameboard, "Player1", winCondition);
 					}
 				} while (correctPlace == false);
-
+				if(winCondition == true) {
+					break;
+				}
 				do {
 					int cpuInput = player1.play();
 					correctPlace = false;
